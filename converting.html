@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://maeyler.github.io/favicon.ico">
+    <title>Celcius To Fahrenheit </title>
+
+  <style> /* CSS comment */
+    body { max-width: 440px; }
+    #inp { width: 50px }
+    #out {
+        font-size: 18px;
+        background: blue;
+        color: white;
+        text-align: center;
+        padding: 10px;
+    }
+  </style>
+</head>
+
+<body>   <!-- HTML comment: Modify all items marked xxx -->
+
+<h2 id=title>This text is not shown. Why?</h2>
+<p><input id="c" onkeyup="convert('C')"> °C</p>
+
+<p><input id="f" onkeyup="convert('F')"> ℉</p>
+
+
+<p>Ref: <a href="https://www.w3schools.com/js/" 
+   target="NewTab">JS Tutorial</a>
+</p>
+
+<script>
+"use strict";
+function convert(degree) {
+  var x;
+  if (degree == "C") {
+    x = ((document.getElementById("c").value * 18) / 10) + 32;
+    document.getElementById("f").value = x;
+  } else {
+    x = ((document.getElementById("f").value -32) * 10) / 18;
+    document.getElementById("c").value = x;
+  }
+}
+    title.innerText = document.title;
+</script>
+
+</body>
+</html>
+
