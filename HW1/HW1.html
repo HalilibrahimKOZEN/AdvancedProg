@@ -1,0 +1,86 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+        <title>Table </title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     
+        
+    </head>
+    
+<body onload="firstLine();">
+
+        
+
+<hr width="2000" size="10" color="black">
+<h2 id="title">Poisson Possibilities for Different Values of Lambda</h2>
+<hr width="2000" size="10" color="black">
+        <table border="2">
+            
+            <tr>
+<th>Number of Events</th>
+                <th>Lambda=0.5</th>
+                <th>Lambda=1</th>
+                <th>Lambda=1.5</th>
+<th>Lambda=2</th>
+                <th>Lambda=2.5</th>
+                <th>Lambda=3</th>
+</tr>
+      
+            
+        </table>
+
+
+       <script>
+            
+let cel1;
+            function addRow(p)
+            {
+   
+                let table = document.getElementsByTagName('table')[0];
+                let newRow = table.insertRow(table.rows.length);
+                  
+                // add cells to the row
+                cel1 = newRow.insertCell(0);
+                let cel2 = newRow.insertCell(1);
+                let cel3 = newRow.insertCell(2);
+let cel4 = newRow.insertCell(3);
+                let cel5 = newRow.insertCell(4);
+                let cel6 = newRow.insertCell(5);
+                let cel7 = newRow.insertCell(6);	
+                  
+                // add values to the cells
+                
+                cel2.innerHTML = p[0];
+                cel3.innerHTML = p[1];
+cel4.innerHTML = p[2];
+                cel5.innerHTML = p[3];
+                cel6.innerHTML = p[4];
+cel7.innerHTML = p[5];
+            }
+let p;
+const L = [0.5,1,1.5,2,2.5,3]
+
+
+function firstLine() {
+p=[]
+for (let i=0; i<9; i++){
+for (let a=0; a<L.length; a++) {
+if(i==0){
+p.push(Number(Math.exp(-L[a]).toFixed(4)))
+}	
+else{
+p[a]=Number((p[a]*L[a]/i).toFixed(4)).toFixed(4)
+}
+
+}
+addRow(p)
+cel1.innerHTML = 'x='+i;
+}
+}
+
+       </script>
+
+    </body>
+</html>
+
