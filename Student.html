@@ -39,6 +39,7 @@
 
 
 <p id=out onClick='doClick(event)'>Result:</p>
+<p id=samp></p>
 
 
 <hr />
@@ -127,12 +128,18 @@ function showStd(id) {
 function coursesIn(code) {
     code = code.toUpperCase();
     let a = [];
+    let b = [];
+	let c = [];
     for (let crs of vals) 
         if (crs.id.includes(code)) 
-            a.push(crs.id+" ");
+            a.push(crs.time);
+            b.push(crs.date);
+			c.push(crs.list);
+    
     if (a.length > 0)
         report(code+": ", a.length+" courses", a);
-    else report("No courses in "+code);
+        samp.innerText = a+" \n"+b+" \n"+c;
+    else report("There is no course with this code : "+code);
 }
 
 
