@@ -131,10 +131,11 @@ function coursesIn(code) {
     let b = [];
 	let c = [];
     for (let crs of vals) 
-        if (crs.id.includes(code)) 
+        if (crs.id.includes(code)) {
             a.push(crs.time);
             b.push(crs.date);
-			c.push(crs.list);
+	    c.push(crs.list);
+	}
     
     if (a.length > 0)
         report(code+": ", a.length+" courses", a);
