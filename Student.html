@@ -77,7 +77,7 @@ function readData(file) {
         .then(addCourses, report);
 }
 function parseCourse(line) {
-    let [id, time, date,list] = line.split("\t");
+    let [id, time, date,...list] = line.split("\t");
   /*let id = b[0], name = b[1], gpa = b[2];
     let list = [];
     for (let i=3; i<b.length; i++) list.push(b[i]);
