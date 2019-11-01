@@ -142,7 +142,10 @@ function coursesIn(code) {
     if (a.length > 0)
          report("There is a course with this code : "+code);
        // samp.innerText = a+" \n"+b+" \n"+c;
-    else report("There is no course with this code : "+code);
+    else{ 
+	samp.innerHTML = " ";    
+	report("There is no course with this code : "+code);
+    }
 }
 
 
