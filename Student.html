@@ -50,9 +50,10 @@
 <script>
 "use strict";
 function report(msg, id, list) {
+    out.innerHTML = " ";
     out.innerHTML += "<br>"; msg += " ";
     out.appendChild(document.createTextNode(msg));
-    let n1;
+   /* let n1;
     if (id) {
         n1 = document.createElement("span");
         n1.appendChild(document.createTextNode(id));
@@ -67,7 +68,7 @@ function report(msg, id, list) {
         n2.classList.add("course");
         if (n1) n1.appendChild(n2);
     }
-    console.log(msg);
+    console.log(msg);*/
 }
 const url = "https://maeyler.github.io/JS/data/";
 function readData(file) {
@@ -139,7 +140,7 @@ function coursesIn(code) {
 	}
     
     if (a.length > 0)
-        report(code+": ", a.length+" courses", a);
+         report("There is a course with this code : "+code);
        // samp.innerText = a+" \n"+b+" \n"+c;
     else report("There is no course with this code : "+code);
 }
