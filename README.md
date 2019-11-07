@@ -8,6 +8,7 @@ Advanced Programming Works
 - [CW3_Inspector](https://halilibrahimkozen.github.io/AdvancedProg/CW3/c4_inspector.html)
 - [CW4_Course](https://halilibrahimkozen.github.io/AdvancedProg/Student.html)
 - [CW5 Elequent JS](https://halilibrahimkozen.github.io/AdvancedProg/CW5/work/EloquentJS.html)
+- [CW6 File Operations](https://halilibrahimkozen.github.io/AdvancedProg/CW6)
 
 
 ### HWs
