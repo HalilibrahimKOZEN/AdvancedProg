@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <style>
+
+    body { max-width: 450px; }
+    #clock {
+        font-size: 48px;
+        background-color: blue;
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+  </style>
+	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="CW7.js"></script>
+    <title style=" color:white;">Calculate Map and Array Runtime </title>
+	<hr />
+  <script>
+  const array = [], map = new Map();
+  const url = "https://maeyler.github.io/JS/data/";
+  function readData(file) {
+      console.log("readData "+file);
+      fetch(url+file)
+          .then(r => r.text(), console.log)
+          .then(addStudents, console.log);
+  }
+  function parseStudent(line) {
+      let b = line.split("\t");
+      let id = b[0], name = b[1], gpa = b[2];
+      let std = new Student(id, name, gpa);
+      let list = [];
+      for (let i=3; i<b.length; i++)
+          list.push(b[i]);
+		  std.courses = list
+      return std
+  }
+  function addStudents(txt) {
+      let msg = "\nData contains ";
+      msg += txt.length+" chars, ";
+      let a = txt.split("\n");
+      msg += a.length+" lines \n";
+      for (let s of a) {
+        let std = parseStudent(s);
+        array.push(std.id); map.set(std.id,std);
+      }
+      msg += array.length+" students\n"
+      out.innerText += msg
+  }
+  function calculateRuntime() {
+  
+	  let MapTime = 0;
+      let ArrayTime = 0;
+	  
+      let totalNumberMap = 0;
+      let totalNumberArray = 0;
+      
+	  
+      for (var i = 0; i < 10000; i++) {
+	
+        let id = "31586"+String(Math.random()).substring(2,6);
+		
+        let mapTime = performance.now();
+		let arrayTime = performance.now();
+		
+		if(map.has(id)){
+            totalNumberMap++;
+        }
+        MapTime += performance.now() - mapTime;
+		
+        if(array.includes(id)){
+            totalNumberArray++;
+        }
+        ArrayTime += performance.now() - arrayTime;		   
+        
+      }
+
+      let s = totalNumberArray+" ID found in \t" + ArrayTime.toPrecision(3) + " msec \n"+ totalNumberMap+ " ID found in \t"+ MapTime.toPrecision(3) + " msec \n" ;
+			 
+      out.innerText += "\n" + s;
+
+
+
+  }
+  </script>
+</head>
+
+<h2 id=title></h2>
+<button onClick='calculateRuntime()'>Compare</button>
+<hr/>
+<p id=out>Map and Array Results</p>
+<hr/>
+<pre id=sample></pre>
+<hr/>
+
+
+<script>
+    readData("Students.txt");
+    title.innerText = document.title;
+    sample.innerText =	readData;
+
+</script>
+
+
+</body>
+</html>
