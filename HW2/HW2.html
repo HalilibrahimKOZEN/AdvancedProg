@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="database.js"></script>
+    <title>HomeWork 2</title>
+</head>
+<style>
+    table {
+        width:400px;
+    }
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+    table.t01 tr:nth-child(even) {
+        background-color: #eee;
+    }
+    table.t01 tr:nth-child(odd) {
+        background-color: #fff;
+    }
+    table.t01 th {
+        background-color: black;
+        color: white;
+    }
+</style>
+<script>
+    var c = new Database()
+    
+    function randomStudent () {
+        var student = c.randomStudent()
+      //  fillStudentInfo(student, 'Get a random student:')
+		//document.getElementById("query").innerHTML =  message + ' ' + student.id
+        document.getElementById("sID").value = student.id
+        document.getElementById("sName").value = student.name
+        document.getElementById("sGPA").value = student.gpa
+        console.log(student)
+    }
+
+    function findStudent () {
+        var student = c.students.get(arguments[0] === undefined ? document.getElementById("sID").value : arguments[0])
+        if(student == undefined){
+            clearStudentInfo()
+            document.getElementById("query").innerHTML = 'There is no student with this ID'
+        }else{
+            document.getElementById("query").innerHTML = ''
+            fillStudentInfo(student, 'Get the student has id:')
+			document.getElementById("query").innerHTML =  ''
+			document.getElementById("gpaInfoAbove").innerHTML = ''
+			document.getElementById("gpaInfoUnder").innerHTML = ''
+            console.log(student)
+        }
+    }
+
+    function aboveGPA () {
+        var limitGPA = document.getElementById("sGPA").value
+       // clearStudentInfo()
+        document.getElementById("sGPA").value = limitGPA
+        var y = c.aboveGivenGPA(limitGPA)
+        //document.getElementById("query").innerHTML =  'GPA Query!'
+        document.getElementById("gpaInfoAbove").innerHTML = 'Ortalaması daha yüksek '+y + ' öğrenci var.'
+    }
+
+	function underGPA () {
+        var limitGPA = document.getElementById("sGPA").value
+        //clearStudentInfo()
+        document.getElementById("sGPA").value = limitGPA
+        var x = c.underGivenGPA(limitGPA)
+        //document.getElementById("query").innerHTML =  'GPA Query!'
+        document.getElementById("gpaInfoUnder").innerHTML = 'Ortalaması daha düşük '+x + ' öğrenci var.'
+    }
+    function fillStudentInfo (student, message) {
+        //clearStudentInfo()
+        //document.getElementById("query").innerHTML =  message + ' ' + student.id
+        //document.getElementById("sID").value = student.id
+        //document.getElementById("sName").value = student.name
+        //document.getElementById("sGPA").value = student.gpa
+       // var res = c.numberOfGivenGPA(student.gpa)
+        //document.getElementById("gpaInfo").innerHTML = 'There are ' + res + ' students above this GPA. <br> There are ' + (c.students.size - res) + ' students under this GPA.'
+        document.getElementById("coursesCount").innerHTML = '(Course count: '+ student.courses.length + ')'
+        document.getElementById("sCourses").innerHTML = ''
+        student.courses.forEach(course => {
+            document.getElementById("sCourses").innerHTML += '<li>' + course.code + '</li>'
+            document.getElementById("eSchedule").innerHTML += '<tr id="'+course.code.toString()+'"><td>'+course.code+'</td>'+'<td>'+course.time+'</td>'+'<td>'+course.date+'</td>'+'<td></td></tr>'
+            course.rooms.forEach(room => {
+                document.getElementById(course.code).lastChild.innerHTML += room + ', '
+            })
+        })
+        
+    }
+
+    function clearStudentInfo () {
+        document.getElementById("query").innerHTML = ''
+        document.getElementById("sID").value = ''
+        document.getElementById("sName").value = ''
+        document.getElementById("sGPA").value = ''
+        document.getElementById("sCourses").innerHTML = ''
+        document.getElementById("gpaInfoAbove").innerHTML = ''
+		document.getElementById("gpaInfoUnder").innerHTML = ''
+        document.getElementById("coursesCount").innerHTML = ''
+        document.getElementById("eSchedule").innerHTML = '<tr><th>Code</th><th>Time</th><th>Date</th><th>Rooms</th></tr>'
+    }
+
+    function randomCourse () {
+        var course = c.randomCourse()
+        //document.getElementById("cQuery").innerHTML =  message + ' ' + course.code
+        document.getElementById("cCode").value = course.code
+        document.getElementById("cTime").innerHTML = course.time
+        document.getElementById("cDate").innerHTML = course.date
+        document.getElementById("roomCount").innerHTML = course.rooms + ','
+		//fillCourseInfo(course, 'Get a random course:')
+        console.log(course)
+    }
+
+    function findCourse () {
+        var course = c.courses.get(arguments[0] === undefined ? document.getElementById("cCode").value : arguments[0])
+        if(course == undefined) {
+            clearCourseInfo()
+			document.getElementById("cCode").value = course.code
+            document.getElementById("cQuery").innerHTML = 'There is no course has this Code'
+        }else{
+			document.getElementById("sList").innerHTML = '<th>ID</th><th>Name</th><th>GPA</th>'
+			document.getElementById("cCode").value = course.code
+			document.getElementById("cTime").innerHTML = course.time
+            document.getElementById("cDate").innerHTML = course.date
+            document.getElementById("roomCount").innerHTML = course.rooms +' ,'
+            document.getElementById("cQuery").innerHTML = ''
+            fillCourseInfo(course, 'Get the course has code:')
+            console.log(course)
+        }
+    }
+
+    function fillCourseInfo (course, message) {
+       // clearCourseInfo()
+        //document.getElementById("cQuery").innerHTML =  message + ' ' + course.code
+       // document.getElementById("cCode").value = course.code
+       // document.getElementById("cTime").innerHTML = course.time
+        //document.getElementById("cDate").innerHTML = course.date
+        //document.getElementById("roomCount").innerHTML = '(Room count: ' + course.rooms.length + ')'
+        //course.rooms.forEach(room => {
+          //  document.getElementById("cRooms").innerHTML += '<li>'+room+'</li>'
+        //})
+        document.getElementById("studentCount").innerHTML = '(Student count: ' + this.c.studentListGivenCourse(course).length + ')'
+        this.c.studentListGivenCourse(course).forEach(student => {
+            document.getElementById("sList").innerHTML += '<tr id="'+student.id+'"><td>'+student.id+'</td><td>'+student.name+'</td><td>'+student.gpa+'</td></tr>'
+        })
+        
+    }
+
+    function clearCourseInfo () {
+        document.getElementById("cQuery").innerHTML = ''
+        document.getElementById("cCode").value = ''
+        document.getElementById("cTime").innerHTML = ''
+        document.getElementById("cDate").innerHTML = ''
+        document.getElementById("roomCount").innerHTML = ''
+        document.getElementById("cRooms").innerHTML = ''
+        document.getElementById("studentCount").innerHTML = ''
+        document.getElementById("sList").innerHTML = '<tr><th>ID</th><th>Name</th><th>GPA</th></tr>'
+    }
+
+    function randomRoom () {
+        var room = c.randomRoom()
+		//document.getElementById("rQuery").innerHTML = message + '' + room
+        document.getElementById("rCode").value = room
+        document.getElementById("rCourseCount").innerHTML = '(Course count: ' + c.rooms.get(room) + ')'
+        document.getElementById("rExamCount").innerHTML = '(Exam count: ' + c.rooms.get(room) + ')'
+        fillRoomInfo(room, 'Get a random room:')
+        console.log(room)
+    }
+
+    function findRoom () {
+        var room = arguments[0] === undefined ? document.getElementById("rCode").value : arguments[0]
+        if(room === undefined) {
+            clearRoomInfo()
+            document.getElementById("rQuery").innerHTML = 'There is no room has this Code'
+        }else{
+            document.getElementById("rQuery").innerHTML = ''
+            fillRoomInfo(room, 'Get the room has code:')
+            console.log(room)
+        }
+    }
+
+    function fillRoomInfo (room, message) {
+        clearRoomInfo()
+        document.getElementById("rQuery").innerHTML = message + '' + room
+        document.getElementById("rCode").value = room
+        document.getElementById("rCourseCount").innerHTML = '(Course count: ' + c.rooms.get(room) + ')'
+        document.getElementById("rExamCount").innerHTML = '(Exam count: ' + c.rooms.get(room) + ')'
+
+        c.courseListGivenRoom(room).forEach(course => {
+            document.getElementById("rCourses").innerHTML += '<li>' + course.code + '</li>'
+            document.getElementById("rExams").innerHTML += '<tr id="room'+course.code+'"><td>'+course.code+'</td><td>'+course.time+'</td><td>'+course.date+'</td><td></td></tr>'
+            course.rooms.forEach(room => {
+                document.getElementById("room"+course.code).lastChild.innerHTML += room + ', '
+            })
+        })
+    }
+
+    function clearRoomInfo () {
+        document.getElementById("rQuery").innerHTML = ''
+        document.getElementById("rCode").value = ''
+        document.getElementById("rCourseCount").innerHTML = ''
+        document.getElementById("rCourses").innerHTML = ''
+        document.getElementById("rExamCount").innerHTML = ''
+        document.getElementById("rExams").innerHTML = '<th>Code</th><th>Time</th><th>Date</th><th>Rooms</th>'
+        
+    }
+
+   
+</script>
+
+<body>
+    <h2 id="title">Öğrenci Veritabanı</h2>
+    <p>
+        <input type="button" value="Rastgele Bir Öğrenci" onClick="randomStudent()">
+        <input type="button" value="Öğrenci Bilgilerini Temizle" onClick="clearStudentInfo()">
+    </p>
+    <p>
+        <input type="button" value="Rastgele Bir Ders" onClick="randomCourse()">
+        <input type="button" value="Ders Bilgilerini Temizle" onClick="clearCourseInfo()">
+    </p>
+    <p>
+        <input type="button" value="Rastgele Bir Derslik" onClick="randomRoom()">
+        <input type="button" value="Derslik Bilgilerini Temizle" onClick="clearRoomInfo()">
+    </p>
+    <p id="info"></p>
+    <hr />
+    <h3 id="student">Ögrenci Bilgisi</h3>
+    
+    <p>
+        <b>No</b> &emsp;&emsp;<input type="text" id="sID" style="width:100px; margin-left: 28px;">&emsp;<input type="button" value="Ara" onClick="findStudent()">
+    </p>
+    <p>
+        <b>İsim</b> &emsp;&emsp;<input type="text" id="sName" style="width:100px; margin-left: 6px;" readonly>
+    </p>
+    <p>
+        <b>Ortalama</b> &emsp;&emsp;<input type="number" id="sGPA" style="width:100px; margin-left: 14px;">&emsp;<input type="button" value="Yüksek" onClick="aboveGPA()">&emsp;<input type="button" value="Düşük" onClick="underGPA()">
+    </p>
+	<p id="query"></p>
+    <p id="gpaInfoAbove"></p>
+	<p id="gpaInfoUnder"></p>
+    <p>
+        <b>Dersler</b> <span id="coursesCount"></span>
+        <ul id="sCourses">
+        </ul>
+    </p>
+    <p>
+        <b>Sınav Takvimi</b>
+        <table id="eSchedule" class="t01">
+            <tr>
+                <th>Ders Kodu</th>
+                <th>Saati</th>
+                <th>Tarihi</th>
+                <th>Sınıflar</th>
+            </tr>
+        </table>
+    </p>
+    <hr />
+    <h3 id="course">Ders Bilgisi</h3>
+    <p id="cQuery"></p>
+    <p>
+        <b>Ders Kodu</b> &emsp;&emsp;<input type="text" id="cCode" style="width:100px; margin-left: 10px;">&emsp;<input type="button" value="Find" onClick="findCourse()">
+    </p>
+    <p>
+        <b>Saat</b> &emsp;&emsp;<span id="cTime" style="width:100px; margin-left: 10px;"></span>
+    </p>
+    <p>
+        <b>Tarih</b> &emsp;&emsp;<span id="cDate" style="width:100px; margin-left: 13px;"></span>
+    </p>
+    <p>
+        <b>Sınıflar</b> <span id="roomCount"></span>
+        <ul id="cRooms">
+        </ul>
+    </p>
+    <p>
+        <b>Öğrenci Listesi</b> <span id="studentCount"></span>
+        <table id="sList" class="t01">
+            <tr>
+                <th>No</th>
+                <th>İsim</th>
+                <th>Ortalama</th>
+            </tr>
+        </table>
+    </p>
+    <hr />
+    <h3 id="room">Derslik Bilgisi</h3>
+    <p id="rQuery"></p>
+    <p>
+        <b>Derslik No</b> &emsp;&emsp;<input type="text" id="rCode" style="width:100px; margin-left: 10px;">&emsp;<input type="button" value="Find" onClick="findRoom()">
+    </p>
+    <p>
+        <b>Dersler</b> <span id="rCourseCount"></span>
+        <ul id="rCourses">
+        </ul>
+    </p>
+    <p>
+        <b>Sınav Listesi</b> <span id="rExamCount"></span>
+        <table id="rExams" class="t01">
+            <tr>
+                <th>Ders Kodu</th>
+                <th>Saati</th>
+                <th>Tarihi</th>
+                <th>Sınıflar</th>
+            </tr>
+        </table>
+    </p>
+    <hr />
+</body>
+</html>
