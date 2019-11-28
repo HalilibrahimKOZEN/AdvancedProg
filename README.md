@@ -10,6 +10,7 @@ Advanced Programming Works
 - [CW5 Elequent JS](https://halilibrahimkozen.github.io/AdvancedProg/CW5/work/EloquentJS.html)
 - [CW6 File Operations](https://halilibrahimkozen.github.io/AdvancedProg/CW6.html)
 - [CW7 Array vs Map](https://halilibrahimkozen.github.io/AdvancedProg/CW7/CW7.html)
+- [CW8 Table](https://halilibrahimkozen.github.io/AdvancedProg/CW8.html)
 
 
 ### HWs
