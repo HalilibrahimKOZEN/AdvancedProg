@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> HW3 </title>
+	<link href="border.css" rel="stylesheet">
+	<script src="animation.js"></script>
+
+  <style>
+
+    #clock {
+		font-size: 48px;
+        background-color: blue;
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+	
+  </style>
+</head>
+
+<body>
+
+<h2 id=title></h2>
+
+
+	<input type="text" name="a1" id="a" value="Halil" >
+	<input type="text" name="b1" id="b" value="İbrahim">
+	<input type="text" name="c1" id="c" value="KÖZEN">
+	<input type="text" name="c1" id="d" value="fsmvü">
+
+	<button onClick="a.animate(t1, 6000),b.animate(t2, 6000),c.animate(t3, 6000),d.animate(t4,6000)">action</button>
+
+
+	<div id="ana_div">
+    <div class="div1" id="div1">
+    <div class="div" id="div">
+	<img class="resim" src="https://www.w3schools.com/html/pic_trulli.jpg" alt="Resim" id="image">
+	</div></div>
+   
+	<Canvas id="test" width="350px" height="540px"></canvas>
+	
+	
+	</p>
+	<br><br><br>
+
+</div>
+
+<script>
+
+
+"use strict";
+var hm, time;  //for clock
+function twoDigits(t) {
+    if (t>9) return ""+t;
+    return "0"+t;
+}
+function setHourMin() {
+    const d = new Date();
+    hm = twoDigits(d.getHours())+":"
+        +twoDigits(d.getMinutes());
+    document.title = "Homework 3"; 
+    //console.log(hm);
+}
+
+/*
+function myMove() {
+  var elem = document.getElementById("myAnimation");   
+  var pos = 0;
+  var id = setInterval(frame, 10);
+  function frame() {
+    if (pos == 350) {
+      clearInterval(id);
+    } else {
+      pos++; 
+      elem.style.top = pos + 'px'; 
+      elem.style.left = pos + 'px'; 
+    }		
+  }
+}
+
+function count() {
+    const d = new Date();
+    let sec = twoDigits(d.getSeconds());
+    if (sec == "00") setHourMin();
+    clock.innerText = hm+":"+sec;
+    time = setTimeout(count, 1000);
+}*/
+
+
+const 
+  t1 = { transform: ["translateX(0)", "translateX(360px)", "translateX(0)"] },
+  t2 = { transform: ["rotate(0)", "rotate(180deg)", "rotate(0)"] },
+  t3 = { background: ["yellow", "cyan", "magenta", "yellow"] },
+  t5 = { background: ["black", "grey", "white", "yellow","cyan","blue","brown","black"] },
+  t4 = { fontSize: ["100%", "150%", "100%", "75%", "100%"] };
+  title.innerText = document.title;
+  setHourMin(); //count();
+</script>
+
+</body>
+</html>

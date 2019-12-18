@@ -1,0 +1,41 @@
+
+.resim{
+    border-radius: 50%;
+    width:200px;
+    height: 200px; 
+    float: left;
+	position: absolute;
+    left: 60px;
+    top: 25px;
+}
+
+#ana_div {
+    
+    height: 550px;
+    width: 1400px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: white;
+    
+}
+
+.div {
+    
+    float: left;
+    display: inline-block;
+    height: 540px;
+    width: 350px;
+    margin: 10px;
+
+}
+
+.div1 {
+    
+    float: center;
+    display: inline-block;
+    height: 540px;
+    width: 350px;
+    margin: 10px;
+	background-color: blue;
+
+}
