@@ -18,4 +18,5 @@ Advanced Programming Works
 
 - [HW1 Poisson Possibilities](https://halilibrahimkozen.github.io/AdvancedProg/HW1/HW1.html)
 - [HW2 Student Database](https://halilibrahimkozen.github.io/AdvancedProg/HW2/HW2.html)
+- [HW3 Animations](https://halilibrahimkozen.github.io/AdvancedProg/HW3/HW3.html)
 
