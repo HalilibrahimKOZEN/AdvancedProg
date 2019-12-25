@@ -20,11 +20,11 @@
 <body>
 
 <h2 id=title></h2>
-	<br><br><br><br>
+	<br><br><br><br><br><br>
 <div class = "centerdiv" align="center" id="div">
 	<h1 style = "color:darkblue;" align = "center" >pick a number between 1 and 1000</h1>  
 	<input type="button" name="start1" id="start" value="start" onClick="nextGuess()"><br><br>
-	<input  name="a1" id="a" value="0" readonly><br><br>
+	<input name="a1" id="a" value="0" readonly><br><br>
 	<input type="button" name="b1" id="b" value="higher" onclick="pressHigher()"><br><br>
 	<input type="button" name="c1" id="c" value="lower" onclick="pressLower()"><br><br>
 	<input type="button" name="d1" id="d" value="success" onclick="success()"><br><br>
@@ -55,20 +55,36 @@ function firstGuess(){
 document.getElementById("c").disabled = true
 document.getElementById("b").disabled = true
 document.getElementById("d").disabled = true
-let min = 0
+let min = 1
 let max = 1000
 let guess;
 let counter =0;
 
 function pressLower() {
-    max = guess-1
-  	nextGuess()
+    max = guess
+	if(guess == min){
+		alert(counter + " tahminde sayı bulundu.")
+		document.getElementById("c").disabled = true
+		document.getElementById("b").disabled = true
+		document.getElementById("d").disabled = true
+		
+	}
+	else
+		nextGuess()
 }
 
 function pressHigher() {
-  min = guess+1
-  if(min<max){
-	nextGuess()
+    min = guess+1
+	if(max == min){
+		alert(counter + " tahminde sayı bulundu.")
+		document.getElementById("c").disabled = true
+		document.getElementById("b").disabled = true
+		document.getElementById("d").disabled = true
+		
+	}else{
+	if(min<max){
+		nextGuess()
+    }
   }
 }
 
@@ -78,9 +94,15 @@ function nextGuess() {
 	document.getElementById("c").disabled = false
 	document.getElementById("d").disabled = false
 	counter++
-  guess = Math.round(Math.random() * (max - min)  +min)	
-  console.log( guess)
-  document.getElementById("a").value = guess
+    guess = Math.floor(Math.random() * (max - min)+min)
+    console.log( guess)
+    if(guess<0){
+		console.log("hata")
+		counter--
+    }
+		else{  
+		document.getElementById("a").value = guess
+  }
 }
 
 function success() {
