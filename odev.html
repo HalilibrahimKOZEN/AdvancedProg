@@ -44,11 +44,11 @@
         </h1>  
 			
 	<div class = "center">
-	<input type="button" name="start1" id="start" value="start" onClick="firstGuess()"><br><br>
+	<input type="button" name="start1" id="start" value="start" onClick="nextGuess()"><br><br>
 	<input  name="a1" id="a" value="0"><br><br>
-	<input type="button" name="b1" id="b" value="higher"><br><br>
-	<input type="button" name="c1" id="c" value="lower" ><br><br>
-	<input type="button" name="d1" id="d" value="success" ><br><br>
+	<input type="button" name="b1" id="b" value="higher" onclick="pressHigher()"><br><br>
+	<input type="button" name="c1" id="c" value="lower" onclick="pressLower()"><br><br>
+	<input type="button" name="d1" id="d" value="success" onclick="success()"><br><br>
 	<input type="button" name="e1" id="e" value="play again" onClick="document.location.reload(true)" >
 	</div>	
 	</p>
@@ -81,7 +81,7 @@ window.addEventListener("load",function() { changeBackground('grey') });
 
 function firstGuess(){
 	let fNumber = Math.floor(Math.random() * 1000)
-	console.log(fNumber)
+	console.log(fNumber)	
 	document.getElementById("a").value = fNumber
 	//console.log(document.getElementById("a").value+"  aabb")
 	document.getElementById("start").disabled = true
@@ -94,25 +94,52 @@ function firstGuess(){
 document.getElementById("c").disabled = true
 document.getElementById("b").disabled = true
 document.getElementById("d").disabled = true
-let ceil = 0
-let floor = 1000
-
+let min = 0
+let max = 1000
+let guess;
+/*
 function aby(){
-	Math.round(Math.random() * (8 - 3)  +3)
+	Math.round(Math.random() * (8 - 3)  +3)	
 }
 
 function getRandom1(min, max) {
-  min = Math.ceil(min)
-  max = Math.floor(max)
   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+  
 }
 
 function getRandom2(min, max) {
-  min = Math.ceil(min)
-  max = Math.floor(max)
   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
+*/
+function pressLower() {
+    max = guess-1
+  	nextGuess()
+}
 
+function pressHigher() {
+  min = guess+1
+  if(min<max){
+	nextGuess()
+  }
+}
+
+function nextGuess() {
+	document.getElementById("start").disabled = true
+	document.getElementById("b").disabled = false
+	document.getElementById("c").disabled = false
+	document.getElementById("d").disabled = false
+  guess = Math.round(Math.random() * (max - min)  +min)	
+  console.log( guess)
+  document.getElementById("a").value = guess
+}
+
+function success() {
+  document.getElementById("c").disabled = true
+  document.getElementById("b").disabled = true
+  document.getElementById("d").disabled = true
+  document.getElementById("start").disabled = true
+  alert("kazandınız")
+}
 
 /*
 function myMove() {
