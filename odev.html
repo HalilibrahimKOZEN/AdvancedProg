@@ -6,84 +6,45 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> Project </title>
   <style>
-.container {
-  height: 200px;
-  position: relative;
-  border: 3px solid green;
+.centerdiv{
+  margin: auto;
+    height: 400px;
+    width: 250px;
+  border: 3px solid #73AD21;
+  padding: 10px;
 }
 
-.center {
-  margin: 0;
-  position: absolute;
-  
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  
-}
-
-.center1 {
-  margin: 0;
-  position: absolute;
-  
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  
-}
-</style>
-	
+</style>	
 </head>
 
 <body>
 
 <h2 id=title></h2>
-	<br><br><br><br><br><br><br><br>
-	<h1 style = "color:darkblue;" align = "center" >  
-            pick a number between 1 and 1000
-        </h1>  
-			
-	<div class = "center">
+	<br><br><br><br><br><br>
+<div class = "centerdiv" align="center" id="div">
+	<h1 style = "color:darkblue;" align = "center" >pick a number between 1 and 1000</h1>  
 	<input type="button" name="start1" id="start" value="start" onClick="nextGuess()"><br><br>
 	<input  name="a1" id="a" value="0"><br><br>
 	<input type="button" name="b1" id="b" value="higher" onclick="pressHigher()"><br><br>
 	<input type="button" name="c1" id="c" value="lower" onclick="pressLower()"><br><br>
 	<input type="button" name="d1" id="d" value="success" onclick="success()"><br><br>
 	<input type="button" name="e1" id="e" value="play again" onClick="document.location.reload(true)" >
-	</div>	
-	</p>
-	<br><br><br>
-
+	</div></p>
 </div>
 
 <script>
 
-
 "use strict";
-var hm, time;  //for clock
-function twoDigits(t) {
-    if (t>9) return ""+t;
-    return "0"+t;
-}
-
-function setHourMin() {
-    const d = new Date();
-    hm = twoDigits(d.getHours())+":"
-        +twoDigits(d.getMinutes());
-    document.title = "Project"; 
-    //console.log(hm);
-}
 
 function changeBackground(color) {
    document.body.style.background = color;
 }
-window.addEventListener("load",function() { changeBackground('grey') });
+window.addEventListener("load",function() { changeBackground('#73CDFF') });
 
 function firstGuess(){
 	let fNumber = Math.floor(Math.random() * 1000)
 	console.log(fNumber)	
 	document.getElementById("a").value = fNumber
-	//console.log(document.getElementById("a").value+"  aabb")
 	document.getElementById("start").disabled = true
 	document.getElementById("b").disabled = false
 	document.getElementById("c").disabled = false
@@ -97,20 +58,8 @@ document.getElementById("d").disabled = true
 let min = 0
 let max = 1000
 let guess;
-/*
-function aby(){
-	Math.round(Math.random() * (8 - 3)  +3)	
-}
+let counter =0;
 
-function getRandom1(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-  
-}
-
-function getRandom2(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-}
-*/
 function pressLower() {
     max = guess-1
   	nextGuess()
@@ -128,6 +77,7 @@ function nextGuess() {
 	document.getElementById("b").disabled = false
 	document.getElementById("c").disabled = false
 	document.getElementById("d").disabled = false
+	counter++
   guess = Math.round(Math.random() * (max - min)  +min)	
   console.log( guess)
   document.getElementById("a").value = guess
@@ -138,37 +88,12 @@ function success() {
   document.getElementById("b").disabled = true
   document.getElementById("d").disabled = true
   document.getElementById("start").disabled = true
-  alert("kazandınız")
+  alert(counter + " tahminde sayı bulundu.")
 }
 
-/*
-function myMove() {
-  var elem = document.getElementById("myAnimation");   
-  var pos = 0;
-  var id = setInterval(frame, 10);
-  function frame() {
-    if (pos == 350) {
-      clearInterval(id);
-    } else {
-      pos++; 
-      elem.style.top = pos + 'px'; 
-      elem.style.left = pos + 'px'; 
-    }		
-  }
-}
+	var div = document.getElementById('div');
+    div.style.backgroundColor = 'lightgrey';
 
-function count() {
-    const d = new Date();
-    let sec = twoDigits(d.getSeconds());
-    if (sec == "00") setHourMin();
-    clock.innerText = hm+":"+sec;
-    time = setTimeout(count, 1000);
-}*/
-/*
-document.getElementById("b").style.color = "blue";
-document.getElementById("c").readOnly = true;
-document.getElementById("d").readOnly = true;
-*/
 </script>
 
 </body>
