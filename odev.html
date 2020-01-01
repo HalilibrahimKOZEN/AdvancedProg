@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -8,7 +9,7 @@
   <style>
 .centerdiv{
   margin: auto;
-    height: 380px;
+    height: 450px;
     width: 250px;
   border: 5px solid #922419;
   padding: 5px;
@@ -20,18 +21,22 @@
 <body>
 
 <h2 id=title></h2>
-	<br><br><br><br><br><br><br>
+<br>
 <div class = "centerdiv" align="center" id="div">
 	<h2 style = "color:darkblue;" align = "center" >pick a number between 1 and 1000</h2>  
-	<input type="button" name="start1" id="start" value="start" onClick="nextGuess()"><br><br>
-	<input name="a1" id="a" value="0" readonly><br><br>
-	<input type="button" name="b1" id="b" value="higher" onclick="pressHigher()"><br><br>
-	<input type="button" name="c1" id="c" value="lower" onclick="pressLower()"><br><br>
-	<input type="button" name="d1" id="d" value="success" onclick="success()"><br><br>
-	<input name="result" id="sonuc" readonly><br><br>
-	<input type="button" name="e1" id="e" value="play again" onClick="document.location.reload(true)" >	
-	</div></p>
-</div>
+	<input type="button" name="start1" id="start" value="start" onClick="nextGuess()" style="font-size : 25px;"><br><br>
+	<input name="a1" id="a" value="0" style="font-size : 18px;" readonly><br><br>
+	<input type="button" name="b1" id="b" value="higher" onclick="pressHigher()" style="font-size : 25px;"><br><br>
+	<input type="button" name="c1" id="c" value="lower" onclick="pressLower()" style="font-size : 25px;"><br><br>
+	<input type="button" name="d1" id="d" value="success" onclick="success()" style="font-size : 25px;"><br><br>
+	<input name="result" id="sonuc" style="font-size : 18px;" readonly><br><br>
+	<input type="button" name="e1" id="e" value="play again" onClick="document.location.reload(true)" style="font-size : 25px;">	
+</div><br>
+
+	<p align="center"
+	<a>Ref: </a> 
+	<a href="https://www.udemy.com/course/unitycourse/" style="font-size:15px;">Proje Fikri</a> &emsp;
+	<a href="https://www.w3schools.com/jsref/met_element_addeventlistener.asp" style="font-size : 15px;">Arkaplan Renk Değiştirme</a></p>	
 
 <script>
 
@@ -119,10 +124,9 @@ function success() {
   document.getElementById("start").disabled = true
   
   document.getElementById("sonuc").style.visibility = "visible"
-  document.getElementById("sonuc").style.color = "#004AFF";
   document.getElementById("sonuc").value = counter + " tahminde sayı bulundu."
 }
-
+	document.getElementById("sonuc").style.color = "#004AFF";
 	var div = document.getElementById('div');
     div.style.backgroundColor = 'lightgrey';
 
