@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> Project </title>
-  <style>
+<title> Project </title>
+<style>
 .centerdiv{
   margin: auto;
     height: 450px;
@@ -14,23 +14,21 @@
   border: 5px solid #922419;
   padding: 5px;
 }
-
 </style>	
 </head>
 
 <body>
 
-<h2 id=title></h2>
-<br>
+<br><br>
 <div class = "centerdiv" align="center" id="div">
-	<h2 style = "color:darkblue;" align = "center" >pick a number between 1 and 1000</h2>  
-	<input type="button" name="start1" id="start" value="start" onClick="nextGuess()" style="font-size : 25px;"><br><br>
+	<p><b style = "color:darkblue; font-size : 26px; " align = "center" >Pick a Number Between 1 and 1000</b></p>
+	<input type="button" name="start1" id="start" value="Start" onClick="nextGuess()" style="font-size : 25px;"><br><br>
 	<input name="a1" id="a" value="0" style="font-size : 18px;" readonly><br><br>
-	<input type="button" name="b1" id="b" value="higher" onclick="pressHigher()" style="font-size : 25px;"><br><br>
-	<input type="button" name="c1" id="c" value="lower" onclick="pressLower()" style="font-size : 25px;"><br><br>
-	<input type="button" name="d1" id="d" value="success" onclick="success()" style="font-size : 25px;"><br><br>
+	<input type="button" name="b1" id="b" value="Higher" onclick="pressHigher()" style="font-size : 25px;"><br><br>
+	<input type="button" name="c1" id="c" value="Lower" onclick="pressLower()" style="font-size : 25px;"><br><br>
+	<input type="button" name="d1" id="d" value="Success" onclick="success()" style="font-size : 25px;"><br><br>
 	<input name="result" id="sonuc" style="font-size : 18px;" readonly><br><br>
-	<input type="button" name="e1" id="e" value="play again" onClick="document.location.reload(true)" style="font-size : 25px;">	
+	<input type="button" name="e1" id="e" value="Play Again" onClick="document.location.reload(true)" style="font-size : 25px;">	
 </div><br>
 
 	<p align="center"
@@ -57,7 +55,6 @@ function firstGuess(){
 	document.getElementById("d").disabled = false
 	
 }
-
 document.getElementById("c").disabled = true
 document.getElementById("b").disabled = true
 document.getElementById("d").disabled = true
@@ -81,7 +78,6 @@ function pressLower() {
 	else
 		nextGuess()
 }
-
 function pressHigher() {
     min = guess+1
 	if(max == min){
@@ -107,7 +103,6 @@ function nextGuess() {
 	counter++
     guess = Math.floor(Math.random() * (max - min)+min)
     
-	
     if(guess<0){
 		
 		counter--
@@ -116,13 +111,11 @@ function nextGuess() {
 		document.getElementById("a").value = guess
   }
 }
-
 function success() {
   document.getElementById("c").disabled = true
   document.getElementById("b").disabled = true
   document.getElementById("d").disabled = true
-  document.getElementById("start").disabled = true
-  
+  document.getElementById("start").disabled = true  
   document.getElementById("sonuc").style.visibility = "visible"
   document.getElementById("sonuc").value = counter + " tahminde sayı bulundu."
 }
