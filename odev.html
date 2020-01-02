@@ -67,9 +67,8 @@ let counter =0;
 function pressLower() {
     max = guess
 	if(guess == min){
-		//alert(counter + " tahminde sayı bulundu.")
 		document.getElementById("sonuc").style.visibility = "visible"
-	    document.getElementById("sonuc").value = counter + " tahminde sayı bulundu."
+	    	document.getElementById("sonuc").value = "Number found in "+counter+" try."
 		document.getElementById("c").disabled = true
 		document.getElementById("b").disabled = true
 		document.getElementById("d").disabled = true
@@ -83,7 +82,7 @@ function pressHigher() {
 	if(max == min){
 		
 		document.getElementById("sonuc").style.visibility = "visible"
-		document.getElementById("sonuc").value = counter + " tahminde sayı bulundu."
+		document.getElementById("sonuc").value = "Number found in "+counter+" try."
 		document.getElementById("c").disabled = true
 		document.getElementById("b").disabled = true
 		document.getElementById("d").disabled = true
@@ -117,11 +116,11 @@ function success() {
   document.getElementById("d").disabled = true
   document.getElementById("start").disabled = true  
   document.getElementById("sonuc").style.visibility = "visible"
-  document.getElementById("sonuc").value = counter + " tahminde sayı bulundu."
+  document.getElementById("sonuc").value = "Number found in "+counter+" try."
 }
 	document.getElementById("sonuc").style.color = "#004AFF";
 	var div = document.getElementById('div');
-    div.style.backgroundColor = 'lightgrey';
+    	div.style.backgroundColor = 'lightgrey';
 
 </script>
 
